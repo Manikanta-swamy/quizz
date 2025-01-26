@@ -1,0 +1,67 @@
+<h3>Add Question</h3>
+<form>
+  <input
+    [(ngModel)]="newQuestion.questionText"
+    name="question"
+    placeholder="Question"
+  />
+  <input
+    [(ngModel)]="newQuestion.options[0]"
+    name="option1"
+    placeholder="Option 1"
+  />
+  <input
+    [(ngModel)]="newQuestion.options[1]"
+    name="option2"
+    placeholder="Option 2"
+  />
+  <input
+    [(ngModel)]="newQuestion.options[2]"
+    name="option3"
+    placeholder="Option 3"
+  />
+  <input
+    [(ngModel)]="newQuestion.options[3]"
+    name="option4"
+    placeholder="Option 4"
+  />
+  <input
+    [(ngModel)]="newQuestion.correctAnswer"
+    name="submit"
+    placeholder="Correct Answer"
+  />
+  <button (click)="addQuestion()">Add Question</button>
+</form>
+
+<h3>Questions</h3>
+
+<!-- Display all questions -->
+<div *ngFor="let question of questions" class="question-item">
+  <p>{{ question.questionText }}</p>
+
+  <!-- If not editing options -->
+  <div *ngIf="!isEditingOptions[question.id]">
+    <ul>
+      <li *ngFor="let option of question.options">{{ option }}</li>
+    </ul>
+    <button (click)="enableEditOptions(question)">Edit Options</button>
+    <button (click)="deleteQuestion(question.id)">Delete</button>
+  </div>
+
+  <!-- If editing options -->
+  <div *ngIf="isEditingOptions[question.id]" class="edit-options">
+    <div *ngFor="let option of updatedOptions[question.id]; let i = index">
+      <input
+        type="text"
+        [value]="option"
+        (input)="updateOption(question.id, i, $event)"
+        placeholder="Edit Option"
+      />
+
+      <button (click)="removeOption(question.id, i)">Remove</button>
+    </div>
+    <button (click)="addOption(question.id)">Add Option</button>
+    <button (click)="saveOptions(question)">Save</button>
+    <button (click)="cancelEditOptions(question.id)">Cancel</button>
+  </div>
+</div>
