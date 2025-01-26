@@ -1,1 +1,8 @@
-<p>registry works!</p>
+<h2>Register</h2>
+<form #registryForm="ngForm" (ngSubmit)="saveUser()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" [(ngModel)]="user.name" required />
+  <label for="phone">Phone:</label>
+  <input type="tel" id="phone" name="phone" [(ngModel)]="user.phone" required />
+  <button type="submit" [disabled]="!registryForm.valid">Submit</button>
+</form>

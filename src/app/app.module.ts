@@ -13,6 +13,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UppercasePipe } from './pipes/uppercase.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { RegistryComponent } from './components/registry/registry.component';
 
 @NgModule({
@@ -25,7 +26,7 @@ import { RegistryComponent } from './components/registry/registry.component';
     HighlightDirective,
     RegistryComponent,
   ],
-  imports: [FormsModule, BrowserModule, AppRoutingModule],
+  imports: [FormsModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent],
 })

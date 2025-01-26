@@ -17,8 +17,12 @@ export class QuizComponent implements OnInit {
 
   constructor(private quizService: QuizService, private router: Router) {}
 
-  ngOnInit() {
-    this.questions = this.quizService.getQuestions();
+  ngOnInit(): void {
+    // Subscribe to questions$ and update the local questions variable
+    this.quizService.questions$.subscribe((data) => {
+      this.questions = data;
+      console.log('Updated Questions:', data);
+    });
   }
   selectAnswer(questionId: number, answer: string) {
     this.userAnswers[questionId] = answer;
@@ -30,6 +34,7 @@ export class QuizComponent implements OnInit {
     ).length;
 
     this.quizService.setScore(correctAnswers);
+    localStorage.setItem('score', correctAnswers.toString());
     this.router.navigate(['/result']);
   }
 }
