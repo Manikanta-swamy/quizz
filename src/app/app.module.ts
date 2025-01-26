@@ -13,6 +13,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UppercasePipe } from './pipes/uppercase.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { FormsModule } from '@angular/forms';
+import { RegistryComponent } from './components/registry/registry.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     AdminComponent,
     UppercasePipe,
     HighlightDirective,
+    RegistryComponent,
   ],
   imports: [FormsModule, BrowserModule, AppRoutingModule],
   providers: [provideClientHydration(withEventReplay())],
